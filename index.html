@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grafico del coronavirus</title>
+</head>
+<body>
+  <canvas id="chart" width="800" height="400"></canvas>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+  <script type="module">
+    // import data from './data.js';
+
+    function totalCaseChart(ctx)
+    {
+      const chart = new Chart(ctx, {
+        type: 'line',
+        data: 
+        {
+          labels: [1,20,30,40, 50,60, 70],
+          datasets: [
+            { 
+              labels: 'Muertes',
+              borderColor: 'red',
+              data: [1,20,22, 26,30,33,36,40,45,49,56],
+            },
+            { 
+              labels: 'Recuperados',
+              borderColor: 'green',
+              data: [5,10,12,15,17,20,25,30,33,45,60,70],
+            },
+            { 
+              labels: 'Confirmados',
+              borderColor: 'orange',
+              data: [2,10,11,22,25,30,44,45,52,54,60,67],
+            },
+          ]
+        },
+        options:
+        {
+          scales:
+          {
+            xAxes: 
+            [{
+              gridLines: 
+              {
+                display: false,
+              }
+            }]
+          },
+          title: 
+          {
+            display: true,
+            text: 'Todos los casos desde el primer reporte COVID-19',
+            fontSize: 30,
+            padding: 30,
+            fontColor: '#12619C',
+          },
+          legend:
+          {
+            position: 'bottom',
+            labels:
+            {
+              padding: 20,
+              boxWidth: 15,
+              fontFamily: 'system-ui',
+              fontColor: 'black',
+            }
+          },
+          tooltips: 
+          {
+            backgroundColor: '#0584F6',
+            titleFontSize: 20,
+            xPadding: 20,
+            yPadding: 20,
+            bodyFontSize: 15,
+            bodySpacing:10,
+            mode: 'x',
+          },
+          layout: 
+          {
+            padding: 
+            {
+              right: 50,
+            }
+          },
+          elements:
+          {
+            line:
+            {
+              borderWidth: 8,
+              fill: false,
+            },
+            point:
+            {
+              radius: 6,
+              bordrtWidth: 4,
+              backgroundColor: 'white',
+              hoverRadius: 8,
+              hoverBorderWidth: 4,
+            }     
+          }
+        }
+      });
+
+    }
+
+    function renderCharts()
+    {
+      const ctx = document.querySelector('#chart').getContext('2d');
+      totalCaseChart(ctx);
+    }
+
+    renderCharts()
+
+  </script>
+</body>
+</html>
